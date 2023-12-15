@@ -1,41 +1,29 @@
-import type { MetaFunction } from "@remix-run/node";
+import type { MetaFunction } from '@remix-run/node'
+import { Link } from '@remix-run/react'
+import { buttonVariants } from '~/components/ui/button'
 
 export const meta: MetaFunction = () => {
-  return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
-  ];
-};
+  return [{ title: 'New Remix App' }, { name: 'description', content: 'Welcome to Remix!' }]
+}
 
 export default function Index() {
   return (
-    <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
-      <h1>Welcome to Remix</h1>
-      <ul>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/blog"
-            rel="noreferrer"
-          >
-            15m Quickstart Blog Tutorial
+    <div className="min-h-screen">
+      <div className="w-full border-b border-border">
+        <nav className="container flex items-center gap-2 h-[57px]">
+          <a href="/" className={buttonVariants({ variant: 'ghost' })}>
+            Home
           </a>
-        </li>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/jokes"
-            rel="noreferrer"
-          >
-            Deep Dive Jokes App Tutorial
+          <a href="/users" className={buttonVariants({ variant: 'ghost' })}>
+            Users
           </a>
-        </li>
-        <li>
-          <a target="_blank" href="https://remix.run/docs" rel="noreferrer">
-            Remix Docs
-          </a>
-        </li>
-      </ul>
+        </nav>
+      </div>
+      <div className="relative flex min-h-full flex-col" id="page">
+        <div className="flex-1 container">
+          <slot />
+        </div>
+      </div>
     </div>
-  );
+  )
 }
